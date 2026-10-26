@@ -156,11 +156,24 @@ html,body,[class*="css"],.stApp{font-family:'Plus Jakarta Sans',sans-serif;color
 
 /* ===== Streamlit widgets: explicit colours (fixes invisible text) ===== */
 [data-testid="stWidgetLabel"],[data-testid="stWidgetLabel"] *{color:var(--ink) !important;font-weight:700;}
+/* form fields: white box, dark text, in any device theme */
+[data-testid="stTextInputRootElement"],[data-testid="stTextAreaRootElement"],[data-testid="stSelectbox"] [role="group"],
 [data-baseweb="input"],[data-baseweb="textarea"],[data-baseweb="select"]>div{background:#fff !important;border:1.5px solid #94A3B8 !important;border-radius:10px !important;}
-[data-baseweb="input"] input,[data-baseweb="textarea"] textarea,[data-baseweb="select"] *{color:var(--ink) !important;background:transparent !important;}
-input::placeholder,textarea::placeholder{color:#64748B !important;}
-[data-baseweb="popover"] [role="listbox"],[data-baseweb="menu"]{background:#fff !important;}
-[data-baseweb="popover"] li,[data-baseweb="popover"] li *{color:var(--ink) !important;}
+[data-testid="stTextInputRootElement"]:focus-within,[data-testid="stTextAreaRootElement"]:focus-within,[data-testid="stSelectbox"] [role="group"]:focus-within{
+  border-color:var(--blue) !important;box-shadow:0 0 0 3px rgba(37,99,235,.2) !important;}
+[data-testid="stTextInput"] input,[data-testid="stTextArea"] textarea,[data-testid="stSelectbox"] [role="group"] *,
+[data-baseweb="input"] input,[data-baseweb="textarea"] textarea,[data-baseweb="select"] *{color:#0F172A !important;-webkit-text-fill-color:#0F172A !important;
+  background:transparent !important;caret-color:#0F172A !important;}
+/* version-proof: white on every layer inside the text fields, whatever the wrapper is called */
+[data-testid="stTextInput"] :is(div,input),[data-testid="stTextArea"] :is(div,textarea),[data-testid="stSelectbox"] [role="group"] :is(div,input){
+  background-color:#fff !important;}
+[data-baseweb="base-input"]{background:#fff !important;border-radius:10px !important;}
+input:-webkit-autofill,textarea:-webkit-autofill{-webkit-text-fill-color:#0F172A !important;-webkit-box-shadow:0 0 0 1000px #fff inset !important;}
+input::placeholder,textarea::placeholder{color:#64748B !important;-webkit-text-fill-color:#64748B !important;opacity:1;}
+[data-testid="InputInstructions"],[data-testid="InputInstructions"] *{color:#475569 !important;}
+[role="listbox"],[data-testid="stSelectboxVirtualDropdown"]{background:#fff !important;}
+[role="option"],[role="option"] *{color:#0F172A !important;background:transparent !important;}
+[role="option"]:hover,[role="option"][aria-selected="true"]{background:#DBEAFE !important;}
 /* solid buttons: View dashboard, Download certificate */
 [data-testid^="stBaseButton-secondary"],[data-testid^="stBaseButton-primary"]{background:var(--navy) !important;border:2px solid var(--navy) !important;
   border-radius:12px;font-weight:700;transition:.25s;}
@@ -173,7 +186,7 @@ input::placeholder,textarea::placeholder{color:#64748B !important;}
 [data-testid^="stBaseLinkButton"]:hover{background:var(--navy) !important;transform:translateY(-3px);box-shadow:var(--shadow);}
 [data-testid^="stBaseLinkButton"]:hover *{color:#fff !important;}
 /* send button */
-[data-testid*="FormSubmit"]{background:var(--g-blue) !important;border:0 !important;padding:.55rem 1.5rem;}
+[data-testid*="FormSubmit"]{background:var(--g-blue) !important;border:0 !important;border-radius:12px !important;padding:.25rem 1.6rem !important;min-height:2.8rem;height:auto;}
 /* hero resume button */
 [data-testid="stHorizontalBlock"]:has(.hero) [data-testid^="stBaseButton"]{background:#fff !important;border-color:#fff !important;}
 [data-testid="stHorizontalBlock"]:has(.hero) [data-testid^="stBaseButton"] *{color:var(--navy) !important;}
