@@ -239,7 +239,12 @@ def contact():
                 st.success(f"Thanks {name.split()[0]}, your message was sent. I'll reply soon.")
             else:
                 mailto = f"mailto:{c.EMAIL}?subject={quote(f'{subject} - {name}')}&body={quote(message)}"
-                st.warning("Direct sending isn't set up, so send it from your email app instead.")
+                st.markdown(
+       "<div style='background:#FFF4E5;color:#8A5A00;border-left:5px solid #D98E04;"
+       "padding:.9rem 1.1rem;border-radius:10px;font-weight:600;'>"
+       "⚠️ Direct sending isn't set up, so send it from your email app instead.</div>",
+       unsafe_allow_html=True,
+   )
                 st.link_button("Open in email app", mailto, icon=":material/mail:")
     with info_col:
         rows = [(f"mailto:{c.EMAIL}", c.EMAIL, "fa-solid fa-envelope"),
